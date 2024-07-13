@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+
+# Build output
+dist/
+build/
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# IDE and editor specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Operating system files
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# NPM package lock files
+package-lock.json
+yarn.lock
