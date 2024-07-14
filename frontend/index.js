@@ -1,37 +1,14 @@
-function handleButton1() {
-  const input1 = document.getElementById('input1').value;
-  fetch('http://localhost:4000/data')
-    .then(response => response.json())
-    .then(data => {
-      const output = document.getElementById('output');
-      output.innerHTML = `Button 1 clicked with input: ${input1}. Received from backend: ${data.number}`;
-    })
-    .catch(error => {
-      console.error('Error fetching data from backend:', error);
-      const output = document.getElementById('output');
-      output.innerHTML = 'Error fetching data from backend.';
-    });
-}
+const express = require('express');
+const path = require('path');
+const app = express();
 
-function handleButton2() {
-  const input2 = document.getElementById('input2').value;
-  const numbers = input2.split(',').map(Number); // Convert comma-separated values to an array of numbers
-  
-  fetch('http://localhost:5000/sort', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ numbers }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      const output = document.getElementById('output');
-      output.innerHTML = `Button 2 clicked with input: ${numbers.join(', ')}. Sorted result: ${data.sortedNumbers.join(', ')}`;
-    })
-    .catch(error => {
-      console.error('Error fetching data from backend:', error);
-      const output = document.getElementById('output');
-      output.innerHTML = 'Error fetching data from backend.';
-    });
-}
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(3000, () => {
+  console.log('Frontend service is running on port 3000');
+});
