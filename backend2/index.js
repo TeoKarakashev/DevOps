@@ -1,6 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
-app.use(express.json()); // Middleware to parse JSON request bodies
+
+
+app.use(cors()); 
+app.use(express.json());
 
 app.post('/sort', (req, res) => {
   const { numbers } = req.body;
