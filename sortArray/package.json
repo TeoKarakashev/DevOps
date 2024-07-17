@@ -1,0 +1,19 @@
+{
+  "name": "backend2",
+  "version": "1.0.0",
+  "description": "A backend service that sorts a given list of numbers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.7",
+    "jest": "^29.7.0"
+  }
+}
