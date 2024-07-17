@@ -28,3 +28,5 @@ app.post("/sort", (req, res) => {
 app.listen(5000, () => {
   console.log("Backend service 2 is running on port 5000");
 });
+
+module.exports = sortArray;
