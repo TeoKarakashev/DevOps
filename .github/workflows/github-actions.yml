@@ -38,18 +38,18 @@ jobs:
 
       - name: Build and test frontend
         run: |
-          docker build -t FES ./frontend
-          docker run -d -p 3000:3000 --name frontend FES
+          docker build -t fes ./frontend
+          docker run -d -p 3000:3000 --name frontend fes
           docker exec frontend npm test
 
       - name: Build and test isPrime
         run: |
-          docker build -t PCS ./is-prime
-          docker run -d -p 4001:4000 --name primeCheck PCS
+          docker build -t pcs ./is-prime
+          docker run -d -p 4001:4000 --name primeCheck pcs
           docker exec primeCheck npm test
 
       - name: Build and test sortArray
         run: |
-          docker build -t SAS ./sortArray
-          docker run -d -p 4002:5000 --name sortArray SAS
+          docker build -t sas ./sortArray
+          docker run -d -p 4002:5000 --name sortArray sas
           docker exec sortArray npm test
