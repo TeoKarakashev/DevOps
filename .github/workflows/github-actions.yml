@@ -45,11 +45,17 @@ jobs:
       - name: Build and test isPrime
         run: |
           docker build -t pcs ./is-prime
-          docker run -d -p 3201:4000 --name primeCheck pcs
+          docker run -d -p 3201:3100 --name primeCheck pcs
           docker exec primeCheck npm test
 
       - name: Build and test sortArray
         run: |
           docker build -t sas ./sortArray
-          docker run -d -p 3202:5000 --name sortArray sas
+          docker run -d -p 3202:3200 --name sortArray sas
           docker exec sortArray npm test
+
+      - name: Stop and remove containers
+        if: always() # Ensure this step runs even if previous steps fail
+        run: |
+          docker stop frontend primeCheck sortArray
+          docker rm frontend primeCheck sortArray

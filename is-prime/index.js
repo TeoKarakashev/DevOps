@@ -31,7 +31,7 @@ app.post("/isPrime", (req, res) => {
   res.json({ number, isPrime: result });
 });
 
-const PORT = 4000;
+const PORT = 3100;
 app.listen(PORT, () => {
   console.log(`Backend service is running on port ${PORT}`);
 });
