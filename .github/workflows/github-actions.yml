@@ -10,25 +10,32 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    services:
-      docker:
-        image: docker:19.03.12
-        options: --privileged
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests for frontend
+        working-directory: ./frontend
+        run: npm test
+
+      - name: Run tests for isPrime
+        working-directory: ./is-prime
+        run: npm test
+
+      - name: Run tests for sortArray
+        working-directory: ./sortArray
+        run: npm test
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -36,24 +43,17 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and test frontend
+      - name: Build and push frontend
         run: |
-          docker build -t fes ./frontend
-          docker run --name frontend fes
-          docker exec frontend npm test
+          docker build -t ${DOCKER_USERNAME}/frontend:latest ./frontend
+          docker push ${DOCKER_USERNAME}/frontend:latest
 
-      - name: Build and test isPrime
+      - name: Build and push isPrime
         run: |
-          docker build -t pcs ./is-prime
-          docker run --name primeCheck pcs
-          docker exec primeCheck npm test
+          docker build -t ${DOCKER_USERNAME}/is-prime:latest ./is-prime
+          docker push ${DOCKER_USERNAME}/is-prime:latest
 
-      - name: Build and test sortArray
+      - name: Build and push sortArray
         run: |
-          docker build -t sas ./sortArray
-          docker run --name sortArray sas
-          docker exec sortArray npm test
-
-      - name: Stop and remove containers
-          docker stop frontend primeCheck sortArray
-          docker rm frontend primeCheck sortArray
+          docker build -t ${DOCKER_USERNAME}/sortArray:latest ./sortArray
+          docker push ${DOCKER_USERNAME}/sortArray:latest
