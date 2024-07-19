@@ -61,5 +61,5 @@ jobs:
       - name: Build and push sortArray
         run: |
           cd sortArray
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/sortArray:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/sortArray:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/sort-array:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/sort-array:latest
