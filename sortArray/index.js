@@ -25,8 +25,6 @@ app.post("/sort", (req, res) => {
   res.json({ sortedNumbers });
 });
 
-app.listen(3200, () => {
-  console.log("Backend service 2 is running on port 3200");
-});
+app.listen(3200, () => {});
 
 module.exports = sortArray;
