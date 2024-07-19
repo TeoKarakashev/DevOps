@@ -32,8 +32,6 @@ app.post("/isPrime", (req, res) => {
 });
 
 const PORT = 3100;
-app.listen(PORT, () => {
-  console.log(`Backend service is running on port ${PORT}`);
-});
+app.listen(PORT, () => {});
 
 module.exports = isPrime;
