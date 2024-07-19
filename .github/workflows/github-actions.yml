@@ -19,20 +19,23 @@ jobs:
         with:
           node-version: "14"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies and run tests for frontend
+        run: |
+          cd frontend
+          npm install
+          npm test
 
-      - name: Run tests for frontend
-        working-directory: ./frontend
-        run: npm test
+      - name: Install dependencies and run tests for is-prime
+        run: |
+          cd is-prime
+          npm install
+          npm test
 
-      - name: Run tests for isPrime
-        working-directory: ./is-prime
-        run: npm test
-
-      - name: Run tests for sortArray
-        working-directory: ./sortArray
-        run: npm test
+      - name: Install dependencies and run tests for sortArray
+        run: |
+          cd sortArray
+          npm install
+          npm test
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -45,15 +48,18 @@ jobs:
 
       - name: Build and push frontend
         run: |
-          docker build -t ${DOCKER_USERNAME}/frontend:latest ./frontend
-          docker push ${DOCKER_USERNAME}/frontend:latest
+          cd frontend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
 
-      - name: Build and push isPrime
+      - name: Build and push is-prime
         run: |
-          docker build -t ${DOCKER_USERNAME}/is-prime:latest ./is-prime
-          docker push ${DOCKER_USERNAME}/is-prime:latest
+          cd is-prime
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/is-prime:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/is-prime:latest
 
       - name: Build and push sortArray
         run: |
-          docker build -t ${DOCKER_USERNAME}/sortArray:latest ./sortArray
-          docker push ${DOCKER_USERNAME}/sortArray:latest
+          cd sortArray
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/sortArray:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/sortArray:latest
