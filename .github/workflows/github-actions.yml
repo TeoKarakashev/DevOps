@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches: ["*"] # This triggers the workflow on push to any branch
+    branches: ["main"]
   pull_request:
-    branches: ["*"] # This triggers the workflow on pull request to any branch
+    branches: ["main"]
 
 jobs:
   build-and-test:
