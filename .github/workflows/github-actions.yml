@@ -23,31 +23,22 @@ jobs:
         run: |
           cd frontend
           npm install
-          npm test -- --forceExit
-
-      - name: Run npm audit
-        run: |
           npm audit
+          npm test -- --forceExit
 
       - name: Install dependencies and run tests for is-prime
         run: |
           cd is-prime
           npm install
-          npm test -- --forceExit
-
-      - name: Run npm audit
-        run: |
           npm audit
+          npm test -- --forceExit
 
       - name: Install dependencies and run tests for sortArray
         run: |
           cd sortArray
           npm install
-          npm test -- --forceExit
-
-      - name: Run npm audit
-        run: |
           npm audit
+          npm test -- --forceExit
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
