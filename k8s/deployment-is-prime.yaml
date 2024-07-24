@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: is-prime-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: is-prime

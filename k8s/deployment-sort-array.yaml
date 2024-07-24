@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sort-array-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: sort-array
