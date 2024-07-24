@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: is-prime-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: is-prime
+  template:
+    metadata:
+      labels:
+        app: is-prime
+    spec:
+      containers:
+        - name: is-prime
+          image: gcr.io/devops-final-430412/is-prime:latest
+          ports:
+            - containerPort: 3100
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: is-prime-service
+spec:
+  selector:
+    app: is-prime
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3100
+  type: LoadBalancer
