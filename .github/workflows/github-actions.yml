@@ -44,12 +44,13 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Log in to Google Container Registry
-        run: |
-          printf "%s" "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > key.json
-          cat key.json
-          gcloud auth activate-service-account --key-file=key.json
-          gcloud --quiet config set project ${{ secrets.GCP_PROJECT_ID }}
-          gcloud auth configure-docker
+         run: |
+           cat <<EOF > key.json
+           ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+           EOF
+           gcloud auth activate-service-account --key-file=key.json
+           gcloud --quiet config set project ${{ secrets.GCP_PROJECT_ID }}
+           gcloud auth configure-docker
 
       - name: Build and push frontend
         run: |
