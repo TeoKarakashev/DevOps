@@ -72,13 +72,7 @@ jobs:
 
       - name: Deploy to GKE
         run: |
-          gcloud container clusters get-credentials <your-cluster-name> --zone us-central1-a --project ${{ secrets.GCP_PROJECT_ID }}
+          gcloud container clusters get-credentials cluster-1 --zone us-central1-a --project ${{ secrets.GCP_PROJECT_ID }}
           kubectl apply -f k8s/deployment-frontend.yaml --validate=false
           kubectl apply -f k8s/deployment-is-prime.yaml --validate=false
           kubectl apply -f k8s/deployment-sortArray.yaml --validate=false
-
-      - name: Deploy Services to GKE
-        run: |
-          kubectl apply -f k8s/service-frontend.yaml --validate=false
-          kubectl apply -f k8s/service-is-prime.yaml --validate=false
-          kubectl apply -f k8s/service-sortArray.yaml --validate=false
