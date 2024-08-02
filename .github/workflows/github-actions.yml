@@ -70,6 +70,11 @@ jobs:
           docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/sort-array:latest .
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/sort-array:latest
 
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
+
       - name: Deploy to GKE
         run: |
           gcloud container clusters get-credentials cluster-1 --zone europe-central2 --project ${{ secrets.GCP_PROJECT_ID }}
