@@ -46,6 +46,7 @@ jobs:
       - name: Log in to Google Container Registry
         run: |
           echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > key.json
+          cat key.json  # Add this line to inspect the contents
           gcloud auth activate-service-account --key-file=key.json
           gcloud --quiet config set project ${{ secrets.GCP_PROJECT_ID }}
           gcloud auth configure-docker
