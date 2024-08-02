@@ -72,12 +72,14 @@ jobs:
 
       - name: Install Google Cloud SDK
         run: |
-          echo "Installing Google Cloud SDK..."
-          sudo apt-get update
-          sudo apt-get install -y apt-transport-https ca-certificates gnupg
-          echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-          sudo apt-get update
-          sudo apt-get install -y google-cloud-sdk
+        echo "Installing Google Cloud SDK..."
+        sudo apt-get update
+        sudo apt-get install -y apt-transport-https ca-certificates gnupg curl
+        echo "Adding Google Cloud SDK APT repository..."
+        curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+        echo "deb [arch=amd64] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
+        sudo apt-get update
+        sudo apt-get install -y google-cloud-sdk
 
       - name: Authenticate gcloud and configure kubectl
         run: |
@@ -85,6 +87,7 @@ jobs:
           gcloud --quiet config set project ${{ secrets.GCP_PROJECT_ID }}
           gcloud --quiet config set compute/zone europe-central2
           gcloud container clusters get-credentials cluster-1
+
       - name: Deploy to GKE
         run: |
           gcloud container clusters get-credentials cluster-1 --zone europe-central2 --project ${{ secrets.GCP_PROJECT_ID }}
