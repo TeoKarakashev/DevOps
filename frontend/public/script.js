@@ -1,7 +1,10 @@
 function handleButton1() {
   const input1 = document.getElementById("input1").value;
   const number = parseInt(input1, 10); // Convert input to a number
-  fetch("http://localhost:4000/isPrime", {
+  const isPrimeUrl =
+    "http://is-prime-service.default.svc.cluster.local:4000/isPrime";
+
+  fetch(isPrimeUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,8 +25,9 @@ function handleButton1() {
 function handleButton2() {
   const input2 = document.getElementById("input2").value;
   const numbers = input2.split(",").map(Number); // Convert comma-separated values to an array of numbers
-
-  fetch("http://localhost:5000/sort", {
+  const sortUrl =
+    "http://sort-array-service.default.svc.cluster.local:5000/sort";
+  fetch(sortUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
