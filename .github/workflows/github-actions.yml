@@ -98,4 +98,4 @@ jobs:
           gcloud container clusters get-credentials cluster-1 --zone europe-central2 --project ${{ secrets.GCP_PROJECT_ID }}
           kubectl apply -f k8s/deployment-frontend.yaml --validate=false
           kubectl apply -f k8s/deployment-is-prime.yaml --validate=false
-          kubectl apply -f k8s/deployment-sortArray.yaml --validate=false
+          kubectl apply -f k8s/deployment-sort-array.yaml --validate=false
