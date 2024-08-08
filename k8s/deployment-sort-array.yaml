@@ -17,6 +17,7 @@ spec:
           image: gcr.io/devops-final-430412/sort-array:latest
           ports:
             - containerPort: 3200
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
