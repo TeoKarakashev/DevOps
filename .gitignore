@@ -31,3 +31,5 @@ Thumbs.db
 # NPM package lock files
 package-lock.json
 yarn.lock
+
+.env
