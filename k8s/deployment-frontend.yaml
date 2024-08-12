@@ -12,7 +12,7 @@ spec:
       labels:
         app: frontend
       annotations:
-        redeploy-on: "v.1.0.3"
+        redeploy-on: "v.1.0.4"
     spec:
       containers:
         - name: frontend

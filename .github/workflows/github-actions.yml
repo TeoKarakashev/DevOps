@@ -26,11 +26,6 @@ jobs:
           npm audit
           npm test -- --forceExit
 
-      - name: Set environment variables for frontend build
-        run: |
-          export SORT_URL=http://34.116.133.96:80/sort
-          export IS_PRIME_URL=http://34.116.129.149:80/isPrime
-
       - name: Install dependencies and run tests for is-prime
         run: |
           cd is-prime
