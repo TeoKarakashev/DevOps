@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: sort-array
+      annotations:
+        redeploy-on: "v.1.0.0"
     spec:
       containers:
         - name: sort-array
