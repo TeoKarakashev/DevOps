@@ -1,4 +1,4 @@
-function handleButton1() {
+function handleIsPrime() {
   const input1 = document.getElementById("input1").value;
   const number = parseInt(input1, 10); // Convert input to a number
   const isPrimeUrl = "http://34.116.129.149:80/isPrime";
@@ -21,7 +21,7 @@ function handleButton1() {
       output.innerHTML = "Error fetching data from backend.";
     });
 }
-function handleButton2() {
+function handleSortArray() {
   const input2 = document.getElementById("input2").value;
   const numbers = input2.split(",").map(Number); // Convert comma-separated values to an array of numbers
   const sortUrl = "http://34.116.133.96:80/sort";
