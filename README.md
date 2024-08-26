@@ -49,3 +49,7 @@ Our branching strategy utilizes the following branch types:
 
 - **Naming Convention** : `fix/<issue-description>`
 - **Purpose** : Intended for quick fixes that need to be deployed rapidly to address bugs or issues in the production code.
+
+Local usage
+
+Open three seperate terminals and navigate to the folder for every service. run npm install in every single folder then proceed to run npm start(for every service). You should see a message such as
