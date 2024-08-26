@@ -13,7 +13,7 @@ function handleIsPrime() {
     .then((response) => response.json())
     .then((data) => {
       const output = document.getElementById("output");
-      output.innerHTML = `Button 1 clicked with input: ${number}. Is prime: ${data.isPrime}`;
+      output.innerHTML = `prime clicked with input: ${number}. Is prime: ${data.isPrime}`;
     })
     .catch((error) => {
       console.error("Error fetching data from backend:", error);
