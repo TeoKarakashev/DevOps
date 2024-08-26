@@ -12,7 +12,7 @@ spec:
       labels:
         app: sort-array
       annotations:
-        redeploy-on: "v.1.0.0"
+        redeploy-on: "v.1.0.1"
     spec:
       containers:
         - name: sort-array
